@@ -1,7 +1,7 @@
 package com.example.lembretes
 
 import android.app.Activity
-import android.content.Intent
+import android.content.IntentPersistencia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("mes",month)
             intent.putExtra("ano",year)
             startActivity(intent)
-        })
+        })Persistencia
 
         this.lembretes = ArrayList()
         this.btAdd = findViewById(R.id.fabAdicionar)
@@ -57,14 +57,14 @@ class MainActivity : AppCompatActivity() {
     inner class ClickNoItemDaLista: AdapterView.OnItemClickListener{
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             val lembrete = this@MainActivity.lembretes[position]
-            Toast.makeText(this@MainActivity, "${desejo.descricao} - ${desejo.data}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "${lembrete.descricao} - ${lembrete.data}", Toast.LENGTH_SHORT).show()
         }
     }
 
     inner class ClickLongoNoItemDaLista: AdapterView.OnItemLongClickListener{
         override fun onItemLongClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long): Boolean {
-            val lembretes = this@MainActivity.lembretess[position]
-            (this@MainActivity.lvLembretes.adapter as ArrayAdapter<Lembrete>).remove(desejo)
+            val lembretes = this@MainActivity.lembretes[position]
+            (this@MainActivity.lvLembretes.adapter as ArrayAdapter<Lembrete>).remove(lembrete)
             return true
         }
     }
