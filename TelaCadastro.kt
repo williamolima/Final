@@ -21,20 +21,20 @@ class TelaCadastro : AppCompatActivity() {
         this.btCadastrar = findViewById(R.id.btCadastrar)
         this.btCancelar = findViewById(R.id.btCancelar)
         this.etDescricao = findViewById(R.id.etDescricao)
+        this.etData.setOnClickListener({
+            val dia = intent.getIntExtra("dia", 0)
+            val mes = intent.getIntExtra("mes", 0)
+            val ano = intent.getIntExtra("ano",0)
 
-        val dia = intent.getIntExtra("dia", 0)
-        val mes = intent.getIntExtra("mes", 0)
-        val ano = intent.getIntExtra("ano",0)
+            etData = dia.toString()+"/"+mes.toString()+"/"+ano.toString()
 
-        etData = dia.toString()+"/"+mes.toString()+"/"+ano.toString()
-
-        this.etData = findViewById(R.id.etData)
+            return etData
+            })
 
         this.btCadastrar.setOnClickListener({ cadastrarLembrete(it) })
         this.btCancelar.setOnClickListener({ finish() })
 
     }
-
     private fun cadastrarLembrete(view: View) {
         val descricao = etDescricao.text.toString()
         val data = etData.text.toString()
